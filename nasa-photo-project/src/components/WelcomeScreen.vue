@@ -25,7 +25,7 @@ onMounted(() => {
 
 <template>
     <div class="welcome-banner">
-        <img :src="componentData.bannerURL" :alt="componentData.title"/>
+        <img v-if="componentData.bannerURL" :src="componentData.bannerURL" :alt="componentData.title"/>
     </div>
     <div class="title">{{ componentData.title }}</div>
     <div class="text">{{ componentData.description }}</div>

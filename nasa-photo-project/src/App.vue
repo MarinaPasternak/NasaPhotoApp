@@ -2,12 +2,15 @@
 import { ref, onMounted } from 'vue';
 
 import WelcomeScreen from './components/WelcomeScreen.vue';
+import ListWrapper from './components/ListWrapper.vue';
 
 const isWelcomeScreenShown = ref(true);
 
 onMounted(() => {
   setTimeout(() => {
-    isWelcomeScreenShown.value = false
+    document.body.style.padding = "20px";
+    document.body.style.overflow = "auto";
+    isWelcomeScreenShown.value = false;
   }, 5000);
 });
 
@@ -17,6 +20,9 @@ onMounted(() => {
    <transition name="fade">
     <div v-if="isWelcomeScreenShown">
       <WelcomeScreen></WelcomeScreen>
+    </div>
+    <div v-else>
+      <ListWrapper></ListWrapper>
     </div>
   </transition>
 </template>
