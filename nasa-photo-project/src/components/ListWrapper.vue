@@ -30,8 +30,10 @@ const performSearch = async () => {
         <LoadingSpinner></LoadingSpinner>
     </div>
     <div v-else-if="searchResults.length > 0 && isLoading === false" class="list-wrapper">
-        <template v-for="result in searchResults" :key="result.id">
-            <ListItem :cardInformation="result"></ListItem>
+        <template v-for="result in searchResults" :key="result.data.center">
+            <ListItem 
+            :cardInformation="result.data[0]"
+            :cardImgURL="result.links[0].href"></ListItem>
         </template>
     </div>
     <div v-else class="empty-list">
