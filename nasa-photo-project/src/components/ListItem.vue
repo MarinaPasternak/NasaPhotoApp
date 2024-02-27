@@ -10,7 +10,12 @@ const cardImgURL = ref(props.cardImgURL);
 
 <template>
     <div class="card">
-        <img :src="cardImgURL" :alt="cardData.center">
+        <template v-if="cardImgURL">
+            <img :src="cardImgURL" :alt="cardData.center">
+        </template>
+        <template v-else>
+            <div class="square"></div>
+        </template>
         <div class="container">
             <h3>{{ cardData.center }}</h3>
             <p>{{ cardData.description }}</p>
@@ -40,6 +45,13 @@ const cardImgURL = ref(props.cardImgURL);
         max-height: 200px;
     }
 
+    .square {
+       width: 300px;
+       height: 200px;
+       background-color: #155e6a;
+       margin: auto;
+    }
+
     h3 {
         color: #2c3e50;
     }
@@ -49,14 +61,17 @@ const cardImgURL = ref(props.cardImgURL);
         -webkit-box-orient: vertical;
         overflow: hidden;
         -webkit-line-clamp: 5;
-        text-align: justify;
+        text-align: left;
+        font-weight: 500;
     }
 
     .badges-list {
+        overflow-y: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 5px;
+        height: 86px;
         flex-wrap: wrap;
         
         div {
