@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue';
+import LoadingSpinner from './LoadingSpinner.vue';
+import ListItem from './ListItem.vue';
 
 let query = ref('');
 const isLoading = ref(false);
@@ -24,8 +26,13 @@ const performSearch = async () => {
         <input type="text" autofocus v-model="query"/>
         <button @click="performSearch">Search</button>
     </div>
-    <div v-if="searchResults.length > 0 && isLoading === false" class="list-wrapper">
-
+    <div v-if="isLoading === true">
+        <LoadingSpinner></LoadingSpinner>
+    </div>
+    <div v-else-if="searchResults.length > 0 && isLoading === false" class="list-wrapper">
+        <template v-for="result in searchResults" :key="result.id">
+            <ListItem :cardInformation="result"></ListItem>
+        </template>
     </div>
     <div v-else class="empty-list">
         <h1>Sorry, data could not be found</h1>
